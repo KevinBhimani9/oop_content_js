@@ -1,0 +1,142 @@
+<table>
+    <tr>
+        <td>Marks of Physcis</td>
+        <td><input type="number" id="phy"></td>
+    </tr>
+
+    <tr>
+        <td>Marks of Chemistry</td>
+        <td><input type="number" id="chem"></td>
+    </tr>
+
+    <tr>
+        <td>Marks of Biology</td>
+        <td><input type="number" id="bio"></td>
+    </tr>
+
+    <tr>
+        <td>Marks of Maths</td>
+        <td><input type="number" id="maths"></td>
+    </tr>
+
+    <tr>
+        <td>Marks of Computer</td>
+        <td><input type="number" id="comp"></td>
+    </tr>
+
+
+
+</table>
+<table>
+    <tr>
+        <input type="button" onclick="save()" value="Submit">
+    </tr>
+</table>
+
+<table>
+
+    <tbody id="record">
+
+
+
+    </tbody>
+
+</table>
+
+<script type=text/javascript>
+
+let data = [];
+
+const save = () => {
+  
+let phy = parseInt(document.getElementById('phy').value);
+let chem = parseInt(document.getElementById('chem').value);
+let bio = parseInt(document.getElementById('bio').value);
+let maths = parseInt(document.getElementById('maths').value);
+let comp = parseInt(document.getElementById('comp').value);
+
+
+
+let percentage=(phy + chem + bio + maths + comp)/5;
+
+let obj = {
+
+
+    phy : phy,
+    chem : chem,
+    bio : bio,
+    maths : maths,
+    comp : comp,
+    percentage : percentage
+
+}
+
+data.push(obj);
+document.getElementById('phy').value = "";
+document.getElementById('chem').value = "";
+document.getElementById('bio').value = "";
+document.getElementById('maths').value = "";
+document.getElementById('comp').value = "";
+viewData();
+
+
+if (percentage >= 90){
+    alert("Congrulations you passed with Grade A");
+}
+else if (percentage >= 80){
+    alert("Congrulations you passed with Grade B");
+}
+else if (percentage >= 70){
+    alert("Congrulations you passed with Grade C");
+}
+else if (percentage >= 60){
+    alert("You can do better ...! passed with Grade D");
+}
+else if (percentage >= 50){
+    alert("You can do better ...! passed with Grade E");
+}
+else if ( percentage < 40){
+    alert("You Failed.. Grade F");
+}
+else{
+    alert("Invalid Input");
+}
+
+
+}
+
+
+const viewData = () =>{
+
+let tbl = "";
+
+data.forEach((val) => {
+
+
+    tbl+= `
+    
+                <tr>Marks of physics = ${val.phy}</tr>
+                <tr>Marks of chemistry = ${val.chem}</tr>    
+                <tr>Marks of biology = ${val.bio}</tr>    
+                <tr>Marks of maths = ${val.maths}</tr>    
+                <tr>Marks of computer = ${val.comp}</tr>    
+
+                <br>
+                <br>
+                <br>
+            <tr>
+                <td> Percentage = ${val.percentage}</td>
+            </tr>
+    
+    
+    `
+})
+
+document.getElementById('record').innerHTML = tbl;
+}
+
+viewData();
+
+
+
+</script>
